@@ -10,7 +10,7 @@ def get_student_by(name):
         if student['name'] == name:
             return student
 
-    return None
+    raise ValueError('Student cannot be found')
 
 
 def get_all_students_names():
@@ -21,8 +21,17 @@ def get_all_students_names():
 
 
 def get_grades_of_students(name):
-    student = get_student_by(name)
-    if student is None:
-        return 'ERROR: Student cannot be found'
+    return get_student_by(name)['grades']
 
-    return student['grades']
+
+def get_average_grades_of_student(name):
+    student_grades = get_grades_of_students(name)
+    if len(student_grades) == 0:
+        raise ValueError('Student has no grades')
+
+    grades_count = len(student_grades)
+    grades_sum = 0.0
+    for grade in student_grades:
+        grades_sum += grade['mark']
+
+    return grades_sum / grades_count
