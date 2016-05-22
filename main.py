@@ -11,12 +11,12 @@ def hello():
 
 @app.route("/students/list")
 def students_list():
-    return json.dumps(students.get_all_names())
+    return json.dumps(students.get_all_students_names())
 
 
 @app.route("/student/<student>/grades")
 def student_grades(student):
-    return json.dumps(students.get_grades_of(student))
+    return json.dumps(students.get_grades_of_students(student))
 
 
 if __name__ == "__main__":

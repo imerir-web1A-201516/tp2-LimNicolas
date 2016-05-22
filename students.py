@@ -13,14 +13,14 @@ def get_student_by(name):
     return None
 
 
-def get_all_names():
+def get_all_students_names():
     output = []
     for student in students:
         output += [student['name']]
     return output
 
 
-def get_grades_of(name):
+def get_grades_of_students(name):
     student = get_student_by(name)
     if student is None:
         return 'ERROR: Student cannot be found'
