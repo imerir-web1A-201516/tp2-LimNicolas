@@ -5,8 +5,24 @@ students = [
 ]
 
 
+def get_student_by(name):
+    for student in students:
+        if student['name'] == name:
+            return student
+
+    return None
+
+
 def get_all_names():
     output = []
     for student in students:
         output += [student['name']]
     return output
+
+
+def get_grades_of(name):
+    student = get_student_by(name)
+    if student is None:
+        return 'ERROR: Student cannot be found'
+
+    return student['grades']

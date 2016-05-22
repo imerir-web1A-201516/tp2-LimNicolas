@@ -14,6 +14,11 @@ def students_list():
     return json.dumps(students.get_all_names())
 
 
+@app.route("/student/<student>/grades")
+def student_grades(student):
+    return json.dumps(students.get_grades_of(student))
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
