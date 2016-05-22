@@ -21,18 +21,34 @@ def students_list():
         return deal_with_error(e)
 
 
-@app.route("/student/<student>/grades")
-def student_grades(student):
+@app.route("/student/<name>/grades")
+def student_grades(name):
     try:
-        return json.dumps(students.get_grades_of_students(student))
+        return json.dumps(students.get_grades_of_students(name))
     except ValueError as e:
         return deal_with_error(e)
 
 
-@app.route("/student/<student>/grades/average")
-def student_grades_average(student):
+@app.route("/student/<name>/grades/average")
+def student_grades_average(name):
     try:
-        return json.dumps(students.get_average_grades_of_student(student))
+        return json.dumps(students.get_average_grades_of_student(name))
+    except ValueError as e:
+        return deal_with_error(e)
+
+
+@app.route("/topic/<name>/grades")
+def topic_grades(name):
+    try:
+        return json.dumps(students.get_grades_of_topic(name))
+    except ValueError as e:
+        return deal_with_error(e)
+
+
+@app.route("/topic/<name>/grades/average")
+def topic_grades_average(name):
+    try:
+        return json.dumps(students.get_average_grades_of_topic(name))
     except ValueError as e:
         return deal_with_error(e)
 

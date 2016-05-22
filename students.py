@@ -21,17 +21,40 @@ def get_all_students_names():
 
 
 def get_grades_of_students(name):
-    return get_student_by(name)['grades']
+    student_grades = get_student_by(name)['grades']
+    if len(student_grades) == 0:
+        raise ValueError('Student has no grades')
+
+    return student_grades
+
+
+def get_grades_of_topic(name):
+    grades = []
+    for student in students:
+        for grade in student['grades']:
+            if grade['topic'] == name:
+                grades += [grade]
+
+    if len(grades) == 0:
+        raise ValueError('Topic has no grades')
+
+    return grades
+
+
+def generate_average_of_grades(grades):
+    grades_count = len(grades)
+    grades_sum = 0.0
+    for grade in grades:
+        grades_sum += grade['mark']
+
+    return grades_sum / grades_count
 
 
 def get_average_grades_of_student(name):
     student_grades = get_grades_of_students(name)
-    if len(student_grades) == 0:
-        raise ValueError('Student has no grades')
+    return generate_average_of_grades(student_grades)
 
-    grades_count = len(student_grades)
-    grades_sum = 0.0
-    for grade in student_grades:
-        grades_sum += grade['mark']
 
-    return grades_sum / grades_count
+def get_average_grades_of_topic(name):
+    topic_grades = get_grades_of_topic(name)
+    return generate_average_of_grades(topic_grades)
